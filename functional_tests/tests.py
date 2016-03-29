@@ -27,7 +27,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn('To-Do', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1').text
         # changed from page 38 of book from To-Do
-        self.assertIn('Your', header_text)
+        self.assertIn('Start', header_text)
 
         # She is invited to enter a to-do item straight away
         inputbox = self.browser.find_element_by_id('id_new_item')
@@ -65,6 +65,11 @@ class NewVisitorTest(LiveServerTestCase):
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
         self.assertNotIn('make a fly', page_text)
+
+        # framces starts his own lists
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox.send_keys('Buy milk')
+        inputbox.send_keys(Keys.ENTER)
 
         # francis gets his own unique url
         francis_list_url = self.browser.current_url
