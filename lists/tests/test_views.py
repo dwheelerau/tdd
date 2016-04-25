@@ -1,8 +1,4 @@
 from django.test import TestCase
-from django.core.urlresolvers import resolve
-from lists.views import home_page
-from django.http import HttpRequest
-from django.template.loader import render_to_string
 from django.utils.html import escape
 # this inports the database
 from lists.models import Item, List
@@ -11,19 +7,7 @@ from lists.forms import ItemForm
 
 # Create your tests here.
 class HomePageTest(TestCase):
-
-    def test_root_url_resolves_to_home_page_view(self):
-        # resolve is a django funct to resolve urls
-        found = resolve('/')
-        self.assertEqual(found.func, home_page)
-
-    def test_home_page_returns_correct_html(self):
-        # http req obj when browswer ask for page
-        request = HttpRequest()
-        # pass it to homepage, that returns a response
-        response = home_page(request)
-        expected_html = render_to_string('home.html')
-        self.assertEqual(response.content.decode(), expected_html)
+    maxDiff = None
 
     def test_home_page_renders_home_template(self):
         response = self.client.get('/')
