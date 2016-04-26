@@ -10,7 +10,7 @@ class LayoutAndStylingTest(FunctionalTest):
         print(self.server_url)
 
         # she notices the infput box nicely centered
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_item_input_box()
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width'] / 2,
             512,
@@ -19,7 +19,7 @@ class LayoutAndStylingTest(FunctionalTest):
 
         # she starts a new list ans sees that nicely centered too
         inputbox.send_keys('testing\n')
-        inputbox = self.browser.find_element_by_id('id_new_item')
+        inputbox = self.get_item_input_box()
         self.assertAlmostEqual(
             inputbox.location['x'] + inputbox.size['width'] / 2,
             512,
