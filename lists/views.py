@@ -36,7 +36,7 @@ def new_list(request):
         item.full_clean()
         item.save()
     except ValidationError:
-        list_.delete()
+        list_.delete()  # this might need to be del see pg 205
         error = "You can't have an empty list item"
         return render(request, 'home.html', {"error": error})
     return redirect(list_)
