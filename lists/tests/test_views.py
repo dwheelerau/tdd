@@ -2,8 +2,11 @@ from django.test import TestCase
 from django.utils.html import escape
 # this inports the database
 from lists.models import Item, List
-from lists.forms import ItemForm, EMPTY_ITEM_ERROR
 from unittest import skip
+from lists.forms import (
+    DUPLICATE_ITEM_ERROR, EMPTY_ITEM_ERROR,
+    ExistingListItemForm, ItemForm,
+    )
 
 
 # Create your tests here.
