@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To-Do lists</title>
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/base.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+
+      <div class="navbar">
+        {% if user.email %}
+          <p>Logged in as {{ user.email}}</p>
+          <p><a id="id_logout" href="{% url 'logout' %}">Log out</a></p>
+        {% else %}
+          <p><a id="id_login" href="{% url 'login' %}">Log in</a></p>
+        {% endif %}
+      </div>
+
+      {% if messages %}
+        <div class="row">
+          <div class="col-md-12">
+            {% for message in messages %}
+            <div class="alert alert-block alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% block content %}
+      {% endblock content %}
+
+    </div>
+
+    {% block scripts %}
+      <script src="http://code.jquery.com/jquery.min.js"></script>
+    {% endblock scripts %}
+  </body>
+
+</html>
